@@ -28,7 +28,9 @@ const getCustomerById = async (id) => {
 const updateCustomer = async (id, customer) => {
     const { name, email, phone, address } = customer;
     try {
-        return await Customer.update({ name, email, phone, address }, { where: { id } });
+        const update =  await Customer.update({ name, email, phone, address }, { where: { id } });
+        console.log(update);
+        return update;
     } catch (error) {
         return error;
     }

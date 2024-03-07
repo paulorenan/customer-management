@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
 
-app.use('/customers', CustomerRoute);
+app.use('/api/customer', CustomerRoute);
 
 
 app.get('/', (req, res) => {

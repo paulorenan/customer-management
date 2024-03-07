@@ -33,8 +33,13 @@ const updateCustomer = async (req, res) => {
     const { id } = req.params;
     const customer = req.body;
     try {
-        const data = await CustomerService.updateCustomer(id, customer);
-        res.status(200).json(data);
+        const findCostumer = await CustomerService.getCustomerById(id);
+        if (!findCostumer) {
+            return res.status(404).json({ error: 'Customer not found' });
+        }
+        await CustomerService.updateCustomer(id, customer);
+        const newCustomer = await CustomerService.getCustomerById(id);
+        res.status(200).json(newCustomer);
     } catch (error) {
         res.status(500).json(error);
     }
