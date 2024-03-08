@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "(docker-compose up -d --build && cd backend && npx sequelize db:migrate)",
+    "start": "(docker-compose up -d --build && cd backend && npm i && npx sequelize db:migrate)",
     "stop": "docker-compose down --remove-orphans",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
