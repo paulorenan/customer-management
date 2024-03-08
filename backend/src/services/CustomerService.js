@@ -1,4 +1,5 @@
 const { Customer } = require('../models');
+const calculateRoutes = require('../schemas/calculateRoutes');
 
 const createCustomer = async (customer) => {
     const { name, email, phone, address } = customer;
@@ -44,10 +45,22 @@ const deleteCustomer = async (id) => {
     }
 }
 
+const shortestRoute = async () => {
+    try {
+        const costumers = await Customer.findAll();
+        const routes = calculateRoutes.findShortestRoute(costumers);
+        return routes;
+    }
+    catch (error) {
+        return error;
+    }
+}
+
 module.exports = {
     createCustomer,
     getCustomers,
     getCustomerById,
     updateCustomer,
-    deleteCustomer
+    deleteCustomer,
+    shortestRoute,
 };

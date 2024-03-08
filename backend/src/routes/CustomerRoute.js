@@ -9,10 +9,13 @@ CostumerRoute.post('/', CustomerMiddleware.validateCustomer, CustomerController.
 
 CostumerRoute.get('/', CustomerController.getCustomers);
 
-CostumerRoute.get('/:id', CustomerController.getCustomerById);
+CostumerRoute.get('/route', CustomerController.shortestRoute);
+
+CostumerRoute.get('/:id', CustomerMiddleware.validateCustomerId, CustomerController.getCustomerById);
 
 CostumerRoute.put('/:id', CustomerMiddleware.validateCustomerId, CustomerMiddleware.validateCustomer, CustomerController.updateCustomer);
 
 CostumerRoute.delete('/:id', CustomerMiddleware.validateCustomerId, CustomerController.deleteCustomer);
+
 
 module.exports = CostumerRoute;

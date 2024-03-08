@@ -1,7 +1,12 @@
 const CustomerService = require('../services/CustomerService');
+const validation = require('../schemas/validation');
 
 const createCustomer = async (req, res) => {
     const customer = req.body;
+    const validateCustomer = validation.validateCustomer(customer);
+    if (validateCustomer !== null) {
+        return res.status(400).json({ error: validateCustomer });
+    }
     try {
         const data = await CustomerService.createCustomer(customer);
         res.status(201).json(data);
@@ -32,6 +37,10 @@ const getCustomerById = async (req, res) => {
 const updateCustomer = async (req, res) => {
     const { id } = req.params;
     const customer = req.body;
+    const validateCustomer = validation.validateCustomer(customer);
+    if (validateCustomer !== null) {
+        return res.status(400).json({ error: validateCustomer });
+    }
     try {
         const findCostumer = await CustomerService.getCustomerById(id);
         if (!findCostumer) {
@@ -55,10 +64,20 @@ const deleteCustomer = async (req, res) => {
     }
 }
 
+const shortestRoute = async (req, res) => {
+    try {
+        const data = await CustomerService.shortestRoute();
+        res.status(200).json(data);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
+
 module.exports = {
     createCustomer,
     getCustomers,
     getCustomerById,
     updateCustomer,
-    deleteCustomer
+    deleteCustomer,
+    shortestRoute
 };
