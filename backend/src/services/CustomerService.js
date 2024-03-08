@@ -48,7 +48,7 @@ const deleteCustomer = async (id) => {
 const shortestRoute = async () => {
     try {
         const costumers = await Customer.findAll();
-        const routes = calculateRoutes.findShortestRoute(costumers);
+        const routes = calculateRoutes.calculateShortestDistance(costumers);
         return routes;
     }
     catch (error) {

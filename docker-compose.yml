@@ -1,23 +1,41 @@
-version: '3'
+version: '3.9'
 
 services:
-  frontend:
-    build: ./frontend
-    ports:
-      - "3000:80"
+  # frontend:
+  #   build: ./frontend
+  #   ports:
+  #     - "8080:80"
 
   backend:
     build: ./backend
+    restart: 'unless-stopped'
     ports:
-      - "4000:3000"
+      - "3000:3000"
     depends_on:
-      - database
+      db:
+        condition: service_healthy
+    environment:
+      DB_HOST: db
+      DB_USER: postgres
+      DB_PASSWORD: 1234
+      DB_NAME: customers_db
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3000"]
+      timeout: 15s
+      retries: 5
 
-  database:
+  db:
     image: postgres
+    container_name: db
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 1234
-      POSTGRES_DB: customers_database
+      POSTGRES_DB: customers_db
+    restart: 'always'
     ports:
-      - "5432:5432"
+      - 5432:5432
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
