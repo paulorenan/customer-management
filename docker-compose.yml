@@ -1,16 +1,16 @@
 version: '3.9'
 
 services:
-  # frontend:
-  #   build: ./frontend
-  #   ports:
-  #     - "8080:80"
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
 
   backend:
     build: ./backend
     restart: 'unless-stopped'
     ports:
-      - "3000:3000"
+      - "4000:4000"
     depends_on:
       db:
         condition: service_healthy
@@ -20,7 +20,7 @@ services:
       DB_PASSWORD: 1234
       DB_NAME: customers_db
     healthcheck:
-      test: ["CMD", "lsof", "-t", "-i:3000"]
+      test: ["CMD", "lsof", "-t", "-i:4000"]
       timeout: 15s
       retries: 5
 
