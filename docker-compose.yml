@@ -18,7 +18,8 @@ services:
       DB_HOST: db
       DB_USER: postgres
       DB_PASSWORD: 1234
-      DB_NAME: customers_db
+      DB_NAME: customersdb
+      PORT: 4000
     healthcheck:
       test: ["CMD", "lsof", "-t", "-i:4000"]
       timeout: 15s
@@ -30,7 +31,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 1234
-      POSTGRES_DB: customers_db
+      POSTGRES_DB: customersdb
     restart: 'always'
     ports:
       - 5432:5432

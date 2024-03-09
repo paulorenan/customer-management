@@ -1,10 +1,10 @@
-const { Customer } = require('../models');
+const Customer = require('../models/customer');
 const calculateRoutes = require('../schemas/calculateRoutes');
 
 const createCustomer = async (customer) => {
     const { name, email, phone, address } = customer;
     try {
-        return await Customer.create({ name, email, phone, address });
+        return await Customer.createCustomer({ name, email, phone, address });
     } catch (error) {
         return error;
     }
@@ -12,7 +12,7 @@ const createCustomer = async (customer) => {
 
 const getCustomers = async () => {
     try {
-        return await Customer.findAll();
+        return await Customer.findAllCustomers();
     } catch (error) {
         return error;
     }
@@ -20,7 +20,7 @@ const getCustomers = async () => {
 
 const getCustomerById = async (id) => {
     try {
-        return await Customer.findByPk(id);
+        return await Customer.findCustomerById(id);
     } catch (error) {
         return error;
     }
@@ -29,7 +29,7 @@ const getCustomerById = async (id) => {
 const updateCustomer = async (id, customer) => {
     const { name, email, phone, address } = customer;
     try {
-        const update =  await Customer.update({ name, email, phone, address }, { where: { id } });
+        const update =  await Customer.updateCustomer(id, { name, email, phone, address });
         console.log(update);
         return update;
     } catch (error) {
@@ -39,7 +39,7 @@ const updateCustomer = async (id, customer) => {
 
 const deleteCustomer = async (id) => {
     try {
-        return await Customer.destroy({ where: { id } });
+        return await Customer.deleteCustomer(id);
     } catch (error) {
         return error;
     }
@@ -47,7 +47,8 @@ const deleteCustomer = async (id) => {
 
 const shortestRoute = async () => {
     try {
-        const costumers = await Customer.findAll();
+        const costumers = await Customer.findAllCustomers();
+        console.log(costumers);
         const routes = calculateRoutes.calculateShortestDistance(costumers);
         return routes;
     }
