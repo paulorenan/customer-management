@@ -8,10 +8,9 @@ import "primereact/resources/themes/lara-light-cyan/theme.css";
 function App() {
   return (
     <PrimeReactProvider>
-      <div className="App">
-        <header className="App-header">
-          <CustomerTable />
-        </header>
+      <div>
+        <h1>Gerenciamento de Clientes</h1>
+        <CustomerTable />
       </div>
     </PrimeReactProvider>
   );
