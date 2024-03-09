@@ -3,8 +3,10 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { InputText } from 'primereact/inputtext';
 import { FilterMatchMode, FilterOperator } from 'primereact/api';
-import DeleteDialog from './DeleteDialog';
 import {  getCustomers, updateCustomer, deleteCustomer } from '../services/customerService';
+import DeleteDialog from './DeleteDialog';
+import CreateCustomerDialog from './CreateCustomerDialog';
+import RouteDialog from './RouteDialog';
 
 export default function CustomerTable() {
   const [customers, setCustomers] = useState([
@@ -24,13 +26,17 @@ export default function CustomerTable() {
   }, []);
 
   useEffect(() => {
-    // getCustomers().then(data => setCustomers(data));
+    fetchCustomers();
   }, []);
 
   const deleteCustomer = (id) => {
     // deleteCustomer(id).then(() => {
     //   setCustomers(customers.filter(c => c.id !== id));
     // });
+  };
+
+  const fetchCustomers = () => {
+    // getCustomers().then(data => setCustomers(data));
   };
 
   const onGlobalFilterChange = (e) => {
@@ -146,7 +152,11 @@ const renderHeader = () => {
 const header = renderHeader();
 
   return (
-    <div style={{padding: '50px'}}>
+    <div className='p-7'>
+      <div className='mb-5' style={{ display: 'flex', gap: '20px'}}>
+        <CreateCustomerDialog fetchCustomers={fetchCustomers} />
+        <RouteDialog />
+      </div>
       <DataTable
         value={customers}
         filters={filters}
