@@ -2,18 +2,18 @@ const pool = require('./connection');
 
 const createTableQuery = `
 CREATE TABLE IF NOT EXISTS customers (
-  id SERIAL PRIMARY KEY,
-  name VARCHAR(100) NOT NULL,
-  email VARCHAR(100) NOT NULL,
-  phone VARCHAR(100) NOT NULL,
-  address VARCHAR(100) NOT NULL
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    phone VARCHAR(100) NOT NULL,
+    address VARCHAR(100) NOT NULL
 )`;
 
 pool.query(createTableQuery).then(() => {
-  console.log('Tabela "users" criada com sucesso!');
+    console.log('Tabela "users" criada com sucesso!');
 })
 .catch((error) => {
-  console.error('Erro ao criar tabela:', error);
+    console.error('Erro ao criar tabela:', error);
 });
 
 const findAllCustomers = async () => {

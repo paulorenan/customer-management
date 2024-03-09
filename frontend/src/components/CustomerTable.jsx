@@ -4,7 +4,7 @@ import { Column } from 'primereact/column';
 import { InputText } from 'primereact/inputtext';
 import { FilterMatchMode, FilterOperator } from 'primereact/api';
 import { Toast } from 'primereact/toast';
-import {  getCustomers, updateCustomer, deleteCustomer } from '../services/customerService';
+import { getCustomers, updateCustomer, deleteCustomer } from '../services/customerService';
 import DeleteDialog from './DeleteDialog';
 import CreateCustomerDialog from './CreateCustomerDialog';
 import RouteDialog from './RouteDialog';
