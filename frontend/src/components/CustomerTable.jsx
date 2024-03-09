@@ -39,7 +39,6 @@ export default function CustomerTable() {
   };
 
   const onGlobalFilterChange = (e) => {
-    console.log(e.target.value)
     const value = e.target.value;
     let _filters = { ...filters };
 
@@ -58,7 +57,6 @@ const onRowEditComplete = (e) => {
   let { newData, index } = e;
 
   _customers[index] = newData;
-  console.log(newData);
 
   setCustomers(_customers);
   updateCustomer(newData);

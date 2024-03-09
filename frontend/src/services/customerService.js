@@ -3,7 +3,6 @@ import axios from "axios";
 const URL = `http://localhost:4000/api/customer`;
 
 export const getCustomers = async () => {
-  console.log(URL)
   try {
     const response = await axios.get(URL);
     return response.data;
@@ -13,8 +12,6 @@ export const getCustomers = async () => {
 };
 
 export const updateCustomer = async (customer) => {
-  console.log(customer);
-  console.log(`${URL}/${customer.id}`)
   try {
     const response = await axios.put(`${URL}/${customer.id}`,customer);
     return response.data;

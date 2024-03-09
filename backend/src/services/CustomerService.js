@@ -30,7 +30,6 @@ const updateCustomer = async (id, customer) => {
     const { name, email, phone, address } = customer;
     try {
         const update =  await Customer.updateCustomer(id, { name, email, phone, address });
-        console.log(update);
         return update;
     } catch (error) {
         return error;
@@ -48,7 +47,6 @@ const deleteCustomer = async (id) => {
 const shortestRoute = async () => {
     try {
         const costumers = await Customer.findAllCustomers();
-        console.log(costumers);
         let routes = calculateRoutes.calculateShortestDistance(costumers);
         routes = routes.map((route, index) => {
             return {

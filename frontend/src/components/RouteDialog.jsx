@@ -25,11 +25,11 @@ export default function RouteDialog() {
       <Button label="Mostrar Menor Rota" onClick={() => fetchShortestRoute()} />
       <Dialog header="Rota mais rápida para visitar todos os clientes" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)}>
         <DataTable stripedRows value={customers}>
-          <Column field="order" header="Order" />
-          <Column field="name" header="Name" />
+          <Column field="order" header="Ordem" />
+          <Column field="name" header="Nome" />
           <Column field="email" header="Email" />
-          <Column field="phone" header="Phone" />
-          <Column field="address" header="Address" />
+          <Column field="phone" header="Telefone" />
+          <Column field="address" header="Localização" />
         </DataTable>
       </Dialog>
     </div>
