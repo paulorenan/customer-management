@@ -67,3 +67,9 @@ Retorna todos os clientes na ordem de rota mais rápida para visitá-los, utiliz
 * Apagar um cliente: `curl -X DELETE http://localhost:3000/customers/1`
 * Obter a rota mais rápida para visitar todos os clientes: `curl -X GET http://localhost:3000/customers/route`
 
+**Screenshots:**
+![image](https://github.com/paulorenan/customer-management/assets/85763550/6ab2bb2b-b4a1-451f-9dd8-9be681bcb4fe)
+![image](https://github.com/paulorenan/customer-management/assets/85763550/a0e41d2b-a41e-46c4-9656-806fc6240aa8)
+
+
+
