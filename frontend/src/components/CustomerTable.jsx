@@ -9,12 +9,7 @@ import CreateCustomerDialog from './CreateCustomerDialog';
 import RouteDialog from './RouteDialog';
 
 export default function CustomerTable() {
-  const [customers, setCustomers] = useState([
-    { id: 1, name: 'John Doe', email: 'jon@test.com', phone: '111-111-1111', address: '12,20' },
-    { id: 2, name: 'Jane Doe', email: 'jane@tes.com', phone: '222-222-2222', address: '1,-5' },
-    { id: 3, name: 'Tom Smith', email: 'tom@test.com', phone: '333-333-3333', address: '0,0' },
-    { id: 4, name: 'Jerry Jones', email: 'jerry@test.com', phone: '444-444-4444', address: '5,5' },
-  ]);
+  const [customers, setCustomers] = useState([]);
   const [globalFilterValue, setGlobalFilterValue] = useState('');
   const [filters, setFilters] = useState(null);
   const [invalidName, setInvalidName] = useState(false);
@@ -29,14 +24,14 @@ export default function CustomerTable() {
     fetchCustomers();
   }, []);
 
-  const deleteCustomer = (id) => {
-    // deleteCustomer(id).then(() => {
-    //   setCustomers(customers.filter(c => c.id !== id));
-    // });
+  const eraseCustomer = (id) => {
+    deleteCustomer(id).then(() => {
+      setCustomers(customers.filter(c => c.id !== id));
+    });
   };
 
   const fetchCustomers = () => {
-    // getCustomers().then(data => setCustomers(data));
+    getCustomers().then(data => setCustomers(data));
   };
 
   const onGlobalFilterChange = (e) => {
@@ -61,7 +56,7 @@ const onRowEditComplete = (e) => {
   console.log(newData);
 
   setCustomers(_customers);
-  // updateCustomer(newData);
+  updateCustomer(newData);
 };
 
 const textEditor = (options) => {
@@ -173,7 +168,7 @@ const header = renderHeader();
         <Column field="phone" sortable header="Telefone" editor={(options) => textEditor(options)} />
         <Column field="address" sortable header="Localização" editor={(options) => addressEditor(options)} />
         <Column header="Editar" rowEditor={true} headerStyle={{ width: '10%', minWidth: '8rem' }} bodyStyle={{ textAlign: 'center' }}></Column>        
-        <Column header="Deletar" body={(rowData) => <DeleteDialog customer={rowData} deleteCustomer={deleteCustomer} />} headerStyle={{ width: '10%', minWidth: '8rem' }} bodyStyle={{ textAlign: 'center' }}></Column>
+        <Column header="Deletar" body={(rowData) => <DeleteDialog customer={rowData} deleteCustomer={eraseCustomer} />} headerStyle={{ width: '10%', minWidth: '8rem' }} bodyStyle={{ textAlign: 'center' }}></Column>
       </DataTable>
     </div>
   );

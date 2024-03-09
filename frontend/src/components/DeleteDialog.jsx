@@ -4,12 +4,17 @@ import { Dialog } from 'primereact/dialog';
 
 export default function DeleteDialog(props) {
   const { customer, deleteCustomer } = props;
+
+  const eraseCustomer = (id) => {
+    deleteCustomer(id)
+    setVisible(false);
+  }
     
   const [visible, setVisible] = useState(false);
   const footerContent = (
     <div>
       <Button label="Não" onClick={() => setVisible(false)} className="p-button-text" />
-      <Button label="Sim" onClick={() => deleteCustomer(customer.id)} severity="danger" />
+      <Button label="Sim" onClick={() => eraseCustomer(customer.id)} severity="danger" />
     </div>
   );
 
@@ -24,4 +29,3 @@ export default function DeleteDialog(props) {
     </div>
   )
 }
-        

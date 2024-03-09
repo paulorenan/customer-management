@@ -3,6 +3,8 @@ import { InputText } from "primereact/inputtext";
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
 
+import { createCustomer } from '../services/customerService';
+
 
 export default function CreateCustomerDialog(props) {
     const { fetchCustomers } = props;
@@ -15,15 +17,16 @@ export default function CreateCustomerDialog(props) {
     const [invalidName, setInvalidName] = useState(false);
     const [invalidEmail, setInvalidEmail] = useState(false);
     const [invalidAddress, setInvalidAddress] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const footerContent = (
         <div>
             <Button label="Cancelar" onClick={() => onCancel()} className="p-button-text" />
-            <Button label="Salvar" onClick={() => saveCustomer()} />
+            <Button label="Salvar" loading={loading} onClick={() => saveCustomer()} />
         </div>
     );
 
-    const saveCustomer = () => {
+    const saveCustomer = async () => {
         if (name === '') {
             setInvalidName(true);
             return;
@@ -36,7 +39,11 @@ export default function CreateCustomerDialog(props) {
             setInvalidAddress(true);
             return;
         }
-        setVisible(false);
+        setLoading(true);
+        createCustomer({ name, email, phone, address }).then(() => {
+            fetchCustomers();
+            onCancel();
+        }).finally(() => setLoading(false));
     };
 
     const onNameChange = (e) => {
