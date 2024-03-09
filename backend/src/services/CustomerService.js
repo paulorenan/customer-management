@@ -49,7 +49,13 @@ const shortestRoute = async () => {
     try {
         const costumers = await Customer.findAllCustomers();
         console.log(costumers);
-        const routes = calculateRoutes.calculateShortestDistance(costumers);
+        let routes = calculateRoutes.calculateShortestDistance(costumers);
+        routes = routes.map((route, index) => {
+            return {
+                ...route,
+                order: index + 1,
+            }
+        });
         return routes;
     }
     catch (error) {

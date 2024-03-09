@@ -7,7 +7,7 @@ import { createCustomer } from '../services/customerService';
 
 
 export default function CreateCustomerDialog(props) {
-    const { fetchCustomers } = props;
+    const { fetchCustomers, toast } = props;
 
     const [visible, setVisible] = useState(false);
     const [name, setName] = useState('');
@@ -43,6 +43,7 @@ export default function CreateCustomerDialog(props) {
         createCustomer({ name, email, phone, address }).then(() => {
             fetchCustomers();
             onCancel();
+            toast.current.show({ severity: 'success', summary: 'Sucesso', detail: 'Cliente criado com sucesso', life: 5000 });
         }).finally(() => setLoading(false));
     };
 

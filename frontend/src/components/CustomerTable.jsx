@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { InputText } from 'primereact/inputtext';
 import { FilterMatchMode, FilterOperator } from 'primereact/api';
+import { Toast } from 'primereact/toast';
 import {  getCustomers, updateCustomer, deleteCustomer } from '../services/customerService';
 import DeleteDialog from './DeleteDialog';
 import CreateCustomerDialog from './CreateCustomerDialog';
@@ -16,6 +17,8 @@ export default function CustomerTable() {
   const [invalidEmail, setInvalidEmail] = useState(false);
   const [invalidAddress, setInvalidAddress] = useState(false);
 
+  const toast = useRef(null);
+
   useEffect(() => {
     initFilters();
   }, []);
@@ -27,6 +30,7 @@ export default function CustomerTable() {
   const eraseCustomer = (id) => {
     deleteCustomer(id).then(() => {
       setCustomers(customers.filter(c => c.id !== id));
+      toast.current.show({ severity: 'success', summary: 'Sucesso', detail: 'Cliente apagado', life: 5000 });
     });
   };
 
@@ -47,7 +51,8 @@ export default function CustomerTable() {
 
 const onRowEditComplete = (e) => {
   if (invalidName || invalidEmail || invalidAddress) {
-      return;
+    toast.current.show({ severity: 'error', summary: 'Erro', detail: 'Campos Inválidos', life: 5000 });
+    return;
   }
   let _customers = [...customers];
   let { newData, index } = e;
@@ -57,6 +62,7 @@ const onRowEditComplete = (e) => {
 
   setCustomers(_customers);
   updateCustomer(newData);
+  toast.current.show({ severity: 'success', summary: 'Sucesso', detail: 'Cliente atualizado', life: 5000 });
 };
 
 const textEditor = (options) => {
@@ -148,8 +154,9 @@ const header = renderHeader();
 
   return (
     <div className='p-7'>
+      <Toast ref={toast} />
       <div className='mb-5' style={{ display: 'flex', gap: '20px'}}>
-        <CreateCustomerDialog fetchCustomers={fetchCustomers} />
+        <CreateCustomerDialog fetchCustomers={fetchCustomers} toast={toast}/>
         <RouteDialog />
       </div>
       <DataTable
