@@ -22,7 +22,7 @@ Este projeto é uma aplicação web completa para gerenciar clientes, com funcio
 
 1. **Clone o repositório:** `git clone https://github.com/paulorenan/customer-management.git`
 3. **Inicie os containers:** `docker compose up`
-4. **Acesse o front-end:** `localhost:3000`
+4. **Acesse o front-end:** `http://localhost:3000`
 
 **Recursos:**
 
@@ -34,38 +34,38 @@ Este projeto é uma aplicação web completa para gerenciar clientes, com funcio
 
 A API do projeto oferece os seguintes endpoints:
 
-**GET /customers**
+**GET /customer**
 
 Retorna todos os clientes cadastrados no sistema.
 
-**GET /customers/:id**
+**GET /customer/:id**
 
 Retorna um único cliente pelo seu ID.
 
-**PUT /customers/:id**
+**PUT /customer/:id**
 
 Atualiza as informações de um cliente existente.
 
-**POST /customers**
+**POST /customer**
 
 Cria um novo cliente no sistema.
 
-**DELETE /customers/:id**
+**DELETE /customer/:id**
 
 Apaga um cliente pelo seu ID.
 
-**GET /customers/route**
+**GET /customer/route**
 
 Retorna todos os clientes na ordem de rota mais rápida para visitá-los, utilizando o algoritmo de otimização de rota TSP (Traveling Salesman Problem).
 
 **Exemplos de uso:**
 
-* Listar todos os clientes: `curl -X GET http://localhost:4000/api/customers`
-* Buscar um cliente pelo ID: `curl -X GET http://localhost:4000/api/customers/1`
-* Atualizar um cliente: `curl -X PUT http://localhost:4000/api/customers/1 -H "Content-Type: application/json" -d '{ "name": "Novo Nome", "email": "novoemail@email.com", "phone": "2255447788", "address": "1,2" }'`
-* Criar um novo cliente: `curl -X POST http://localhost:4000/api/customers -H "Content-Type: application/json" -d '{ "name": "Novo Cliente", "email": "novocliente@email.com", "phone": "2255447788", "address": "3,4" }'`
-* Apagar um cliente: `curl -X DELETE http://localhost:4000/api/customers/1`
-* Obter a rota mais rápida para visitar todos os clientes: `curl -X GET http://localhost:3000/customers/route`
+* Listar todos os clientes: `curl -X GET http://localhost:4000/api/customer`
+* Buscar um cliente pelo ID: `curl -X GET http://localhost:4000/api/customer/1`
+* Atualizar um cliente: `curl -X PUT http://localhost:4000/api/customer/1 -H "Content-Type: application/json" -d '{ "name": "Novo Nome", "email": "novoemail@email.com", "phone": "2255447788", "address": "1,2" }'`
+* Criar um novo cliente: `curl -X POST http://localhost:4000/api/customer -H "Content-Type: application/json" -d '{ "name": "Novo Cliente", "email": "novocliente@email.com", "phone": "2255447788", "address": "3,4" }'`
+* Apagar um cliente: `curl -X DELETE http://localhost:4000/api/customer/1`
+* Obter a rota mais rápida para visitar todos os clientes: `curl -X GET http://localhost:4000/api/customer/route`
 
 **Screenshots:**
 ![image](https://github.com/paulorenan/customer-management/assets/85763550/6ab2bb2b-b4a1-451f-9dd8-9be681bcb4fe)
