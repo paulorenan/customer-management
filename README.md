@@ -60,11 +60,11 @@ Retorna todos os clientes na ordem de rota mais rápida para visitá-los, utiliz
 
 **Exemplos de uso:**
 
-* Listar todos os clientes: `curl -X GET http://localhost:3000/customers`
-* Buscar um cliente pelo ID: `curl -X GET http://localhost:3000/customers/1`
-* Atualizar um cliente: `curl -X PUT http://localhost:3000/customers/1 -H "Content-Type: application/json" -d '{ "name": "Novo Nome", "email": "novoemail@email.com", "phone": "2255447788", "address": "1,2" }'`
-* Criar um novo cliente: `curl -X POST http://localhost:3000/customers -H "Content-Type: application/json" -d '{ "name": "Novo Cliente", "email": "novocliente@email.com", "phone": "2255447788", "address": "3,4" }'`
-* Apagar um cliente: `curl -X DELETE http://localhost:3000/customers/1`
+* Listar todos os clientes: `curl -X GET http://localhost:4000/api/customers`
+* Buscar um cliente pelo ID: `curl -X GET http://localhost:4000/api/customers/1`
+* Atualizar um cliente: `curl -X PUT http://localhost:4000/api/customers/1 -H "Content-Type: application/json" -d '{ "name": "Novo Nome", "email": "novoemail@email.com", "phone": "2255447788", "address": "1,2" }'`
+* Criar um novo cliente: `curl -X POST http://localhost:4000/api/customers -H "Content-Type: application/json" -d '{ "name": "Novo Cliente", "email": "novocliente@email.com", "phone": "2255447788", "address": "3,4" }'`
+* Apagar um cliente: `curl -X DELETE http://localhost:4000/api/customers/1`
 * Obter a rota mais rápida para visitar todos os clientes: `curl -X GET http://localhost:3000/customers/route`
 
 **Screenshots:**
